@@ -1,13 +1,14 @@
--- check if db exists
+-- check if "cms" db exists
 SELECT SCHEMA_NAME
 FROM INFORMATION_SCHEMA.SCHEMATA
 WHERE SCHEMA_NAME = 'cms';
 
--- create db if it doesn't exist
-CREATE DATABASE IF NOT EXISTS cms;
+-- if "cms" does not exist, run "CMS_Database.sql" script
+IF FOUND_ROWS() = 0 THEN
+    SOURCE CMS_Database.sql;
+END IF;
 
 
-USE cms;
+-- 
 
--- run the provided script CMS_Database.sql
-SOURCE CMS_Database.sql;
+-- End of script.
