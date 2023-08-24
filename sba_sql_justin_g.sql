@@ -6,7 +6,7 @@ SOURCE CMS_Database.sql;
 
 
 
--- ### create stored procedures to fullfill each requiment
+-- ### create stored procedures to fullfill each requiment ### 
 
 -- requirement A: List Department Courses
 DELIMITER $$
@@ -134,7 +134,7 @@ $$
 DELIMITER ;
 
 
--- ### call the stored procedures for each requirement
+-- ### call the stored procedures for each requirement ### 
 
 
 -- requirement A
