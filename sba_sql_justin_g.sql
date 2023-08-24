@@ -117,6 +117,22 @@ END $$
 DELIMITER ;
 
 
+-- requirement G: List Students Needing Tutoring
+DELIMITER $$
+CREATE PROCEDURE ListStudentsNeedingTutoring()
+BEGIN
+    -- students with average progress less than 50%
+    SELECT s.firstname AS `First Name`, s.lastname AS `Last Name`,
+           ROUND(AVG(sc.progress), 1) AS `Average Progress`
+    FROM student AS s
+    LEFT JOIN studentCourse AS sc ON s.id = sc.studentId
+    GROUP BY s.id, `First Name`, `Last Name`
+    HAVING `Average Progress` < 50.0
+    ORDER BY `Average Progress` DESC;
+END;
+$$
+DELIMITER ;
+
 
 -- ### call the stored procedures for each requirement
 
@@ -141,6 +157,9 @@ CALL ListAugustAdmissions();
 
 -- requirement F
 CALL ListStudentsTakingMajorCourses();
+
+-- requirement G
+CALL ListStudentsNeedingTutoring();
 
 
 
