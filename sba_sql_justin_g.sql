@@ -13,7 +13,7 @@ DELIMITER $$
 CREATE PROCEDURE ListDepartmentCourses()
 BEGIN
     -- list each department and number of courses offered
-    SELECT d.name AS "Department Name", COUNT(c.id) AS "# Courses"
+    SELECT d.name AS `Department Name`, COUNT(c.id) AS `# Courses`
     FROM department AS d
     LEFT JOIN course AS c ON d.id = c.deptId
     GROUP BY d.id, d.name
@@ -28,7 +28,7 @@ DELIMITER $$
 CREATE PROCEDURE ListMostPopularCourses()
 BEGIN
     -- course name and number of students in each course
-    SELECT c.name AS "Course Name", COUNT(sc.studentId) AS "# Students"
+    SELECT c.name AS `Course Name`, COUNT(sc.studentId) AS `# Students`
     FROM course AS c
     LEFT JOIN studentCourse AS sc ON c.id = sc.courseId
     GROUP BY c.id
@@ -43,7 +43,7 @@ DELIMITER $$
 CREATE PROCEDURE ListCoursesNoFaculty()
 BEGIN
     -- course names with no faculty
-    SELECT c.name AS "Course Name"
+    SELECT c.name AS `Course Name`
     FROM course AS c
     LEFT JOIN facultyCourse AS fc ON c.id = fc.courseId
     WHERE fc.facultyId IS NULL
@@ -75,7 +75,7 @@ DELIMITER $$
 CREATE PROCEDURE ListTotalStudentsEnrolledByYear()
 BEGIN
     -- list total # of students enrolled by year
-    SELECT COUNT(sc.studentId) AS "Students", YEAR(sc.startdate) AS "Year"
+    SELECT COUNT(sc.studentId) AS `Students`, YEAR(sc.startdate) AS `Year`
     FROM studentCourse AS sc
     GROUP BY YEAR(sc.startdate)
     ORDER BY YEAR(sc.startdate) ASC;
@@ -89,7 +89,7 @@ DELIMITER $$
 CREATE PROCEDURE ListAugustAdmissions()
 BEGIN
     -- list start date and # of students for August admissions
-    SELECT sc.startdate AS "Start Date", COUNT(sc.studentId) AS "# Students"
+    SELECT sc.startdate AS `Start Date`, COUNT(sc.studentId) AS `# Students`
     FROM studentCourse AS sc
     WHERE MONTH(sc.startdate) = 8
     GROUP BY YEAR(sc.startdate), MONTH(sc.startdate)
