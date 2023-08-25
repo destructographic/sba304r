@@ -134,32 +134,42 @@ $$
 DELIMITER ;
 
 
+
 -- ### call the stored procedures for each requirement ### 
 
+DELIMITER $$
+CREATE PROCEDURE RunAllRequirements()
+BEGIN  
+    -- requirement A
+    CALL ListDepartmentCourses();
 
--- requirement A
-CALL ListDepartmentCourses();
+    -- requirement B
+    CALL ListMostPopularCourses();
 
--- requirement B
-CALL ListMostPopularCourses();
+    -- requirement C-1
+    CALL ListCoursesNoFaculty();
 
--- requirement C-1
-CALL ListCoursesNoFaculty();
+    -- requirement C-2
+    CALL ListCourseStudentCountNoFaculty();
 
--- requirement C-2
-CALL ListCourseStudentCountNoFaculty();
+    -- requirement D
+    CALL ListTotalStudentsEnrolledByYear();
 
--- requirement D
-CALL ListTotalStudentsEnrolledByYear();
+    -- requirement E
+    CALL ListAugustAdmissions();
 
--- requirement E
-CALL ListAugustAdmissions();
+    -- requirement F
+    CALL ListStudentsTakingMajorCourses();
 
--- requirement F
-CALL ListStudentsTakingMajorCourses();
+    -- requirement G
+    CALL ListStudentsNeedingTutoring();
+END;
+$$
+DELIMITER ;
 
--- requirement G
-CALL ListStudentsNeedingTutoring();
+
+
+CALL RunAllRequirements();
 
 
 
